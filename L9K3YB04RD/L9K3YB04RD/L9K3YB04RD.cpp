@@ -11,7 +11,7 @@ using namespace std;
 HHOOK hHook = 0;
 NOTIFYICONDATA nid = {};
 HWND hWnd = GetConsoleWindow();
-time_t SEED = time(NULL);
+LONG SEED = (unsigned int)time(NULL);
 
 //HICON hIcon = static_cast<HICON>(LoadImage(NULL,
 //    TEXT("L9.ico"),
@@ -30,8 +30,6 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
             KEYBDINPUT kb = { 0 };
             INPUT Input = { 0 };
 
-            int CURRENT;
-
             cout << p->vkCode << endl;
 
             //if (wParam == WM_SYSKEYDOWN) {
@@ -42,20 +40,78 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
                 switch (p->vkCode) {
 
-                    // Space
+                // Space
                 case 32:
-
-                    srand(time(NULL));
+                    SEED = (unsigned int)time(NULL);
 
                     break;
 
+                // A
                 case 65:
+                {
+                    int x[] = { 0x0034, 0x0041, 0x00C0, 0x00C1, 0x00C2, 0x00C3, 0x00C4, 0x00C5, 0x00C6 };
 
-                        keybd_event('4', 0, 0, 0);
-                        keybd_event('4', 0, KEYEVENTF_KEYUP, 0);
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
 
-                        return 1;
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
 
+                    return 1;
+                }
+
+                    break;
+                //D
+                case 68:
+                {
+                    int x[] = { 0x0044, 0x00D0 };
+
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
+
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
+
+                    return 1;
+                }
+                    break;
+                //E
+                case 69:
+                {
+                    int x[] = { 0x0033, 0x0045, 0x00C8, 0x00C9, 0x00CA, 0x00CB, 0x011A, 0x0118, 0x0116, 0x0114, 0x0112, 0x20AC };
+
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
+
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
+
+                    return 1;
+                }
                     break;
 
                 case 73:
@@ -69,27 +125,19 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
                     break;
 
-
-                case 79:
-
-                        keybd_event('0', 0, 0, 0);
-                        keybd_event('0', 0, KEYEVENTF_KEYUP, 0);
-
-                        return 1;
-
-                    break;
-
-                case 83:
+                case 76:
                 {
+                    int x[] = { 0x004C, 0x0141, 0x0139, 0x13B};
 
-
-                    kb.wScan = CURRENT;
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
                     kb.dwFlags = KEYEVENTF_UNICODE;
                     Input.type = INPUT_KEYBOARD;
                     Input.ki = kb;
                     ::SendInput(1, &Input, sizeof(Input));
 
-                    kb.wScan = CURRENT;
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
                     kb.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
                     Input.type = INPUT_KEYBOARD;
                     Input.ki = kb;
@@ -97,6 +145,75 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
                     return 1;
                 }
+                    break;
+
+                case 79:
+                {
+                    int x[] = { 0x004F, 0x00D6, 0x00D5, 0x00D4, 0x00D3, 0x00D2, 0x00D8, 0x0030, 0x0150 };
+
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
+
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
+
+                    return 1;
+                }
+
+                    break;
+
+                case 83:
+                {
+                    int x[] = { 0x0024, 0x0053 };
+
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
+
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
+
+                    return 1;
+                }
+                    break;
+
+                //U
+                case 85:
+                {
+                    int x[] = { 0x00D9 , 0x00DA, 0x00DB, 0x00DC, 0x0055 };
+
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
+
+                    srand(SEED);
+                    kb.wScan = x[rand() % (sizeof(x) / sizeof(*x))];
+                    kb.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
+                    Input.type = INPUT_KEYBOARD;
+                    Input.ki = kb;
+                    ::SendInput(1, &Input, sizeof(Input));
+
+                    return 1;
+                }
+
                     break;
                 case 190:
 
@@ -134,6 +251,64 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
                         return 1;
                     
                     break;
+
+                case 191:
+                {
+
+                    if (GetKeyState(VK_SHIFT) & 0x8000)
+                    {
+
+                        int x[] = { 0, 1 };
+
+                        srand(SEED);
+
+                        if (x[rand() % (sizeof(x) / sizeof(*x))] == 0) {
+
+                            kb.wScan = 0x003F;
+                            kb.dwFlags = KEYEVENTF_UNICODE;
+                            Input.type = INPUT_KEYBOARD;
+                            Input.ki = kb;
+                            ::SendInput(1, &Input, sizeof(Input));
+
+                            kb.wScan = 0x003F;
+                            kb.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
+                            Input.type = INPUT_KEYBOARD;
+                            Input.ki = kb;
+                            ::SendInput(1, &Input, sizeof(Input));
+
+                            kb.wScan = 0x0058;
+                            kb.dwFlags = KEYEVENTF_UNICODE;
+                            Input.type = INPUT_KEYBOARD;
+                            Input.ki = kb;
+                            ::SendInput(1, &Input, sizeof(Input));
+
+                            kb.wScan = 0x0058;
+                            kb.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
+                            Input.type = INPUT_KEYBOARD;
+                            Input.ki = kb;
+                            ::SendInput(1, &Input, sizeof(Input));
+
+                            kb.wScan = 0x0044;
+                            kb.dwFlags = KEYEVENTF_UNICODE;
+                            Input.type = INPUT_KEYBOARD;
+                            Input.ki = kb;
+                            ::SendInput(1, &Input, sizeof(Input));
+
+                            kb.wScan = 0x0044;
+                            kb.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
+                            Input.type = INPUT_KEYBOARD;
+                            Input.ki = kb;
+                            ::SendInput(1, &Input, sizeof(Input));
+
+                            return 1;
+                        }
+
+                    }
+
+                }
+
+                break;
+
                 }
 
             }

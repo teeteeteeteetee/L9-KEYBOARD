@@ -1,8 +1,7 @@
 ﻿  L9K3YB04RD.cpp
-C:\Users\Martin\source\repos\L9K3YB04RD\L9K3YB04RD\L9K3YB04RD.cpp(48,31): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating code
-  1 of 6 functions (16.7%) were compiled, the rest were copied from previous compilation.
+  2 of 6 functions (33.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   L9K3YB04RD.vcxproj -> C:\Users\Martin\source\repos\L9K3YB04RD\Release\L9K3YB04RD.exe
